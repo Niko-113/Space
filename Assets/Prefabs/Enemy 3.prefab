@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4988884264498715822}
   - component: {fileID: -7227856942867773677}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 784bfcd19587b6941af3bb39ff2c91ad, type: 2}
+  - {fileID: 2100000, guid: 6be861219db8e6945a8711f9194e20f6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 2457785739244962049, guid: d4511b14daaa37c468a74ed386b2583f, type: 3}
   shottingOffset: {fileID: 3116137262774567669}
-  points: 10
+  points: 30
   hp: 1
 --- !u!50 &-7227856942867773677
 Rigidbody2D:

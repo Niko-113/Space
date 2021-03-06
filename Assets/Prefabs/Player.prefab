@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 2457785739244962049, guid: d4511b14daaa37c468a74ed386b2583f, type: 3}
   shottingOffset: {fileID: 8125335893176967482}
+  speed: 5
 --- !u!50 &3785887790771851545
 Rigidbody2D:
   serializedVersion: 4

@@ -20,20 +20,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         master = this;
-        // GameStart();
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift)){
-            GameStart();
-        }
+        GameStart();
     }
 
     void GameStart(){
         InstantiatePlayer();
+        InstantiateBarricade();
         enemyManager.Instantiate();
+
 
     }
 
@@ -55,10 +49,13 @@ public class GameManager : MonoBehaviour
 
     private void InstantiatePlayer(){
         player = GameObject.Instantiate(player, transform);
-        player.transform.localPosition = new Vector3(0, -3, 0);
+        player.transform.localPosition = new Vector3(10, -1, 0);
     }
 
     private void InstantiateBarricade(){
-
+        for (int i = 0; i < 4; i++){
+            barricade = GameObject.Instantiate(barricade, transform);
+            barricade.transform.localPosition = new Vector3(i * 5, 3, 0);
+        }
     }
 }
