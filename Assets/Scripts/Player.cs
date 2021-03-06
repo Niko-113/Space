@@ -15,20 +15,17 @@ public class Player : MonoBehaviour
       if (Input.GetKeyDown(KeyCode.Space))
       {
         GameObject shot = Instantiate(bullet, shottingOffset.position, Quaternion.identity);
-        Debug.Log("Bang!");
-
         Destroy(shot, 3f);
-
       }
 
       float horizontal = Input.GetAxis("Horizontal");
-
       transform.position += new Vector3(horizontal, 0, 0) * speed * Time.deltaTime;
 
     }
 
     void OnCollisionEnter2D (Collision2D collision){
-      Destroy(this.gameObject);
-      
+      GameManager.master.PlayerHit();
+      Destroy(this);
+
     }
 }
