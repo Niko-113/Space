@@ -34,7 +34,6 @@ public class Enemy : MonoBehaviour
 
     public void Fire(){
       if (CheckBelow()){
-        Debug.Log("Stop!");
         return;
       } 
 

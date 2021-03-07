@@ -28,9 +28,8 @@ public class GameManager : MonoBehaviour
         InstantiatePlayer();
         InstantiateBarricade();
         enemyManager.Instantiate();
-
-
     }
+
 
     public void AddPoints(int points){
         score += points;
@@ -47,6 +46,14 @@ public class GameManager : MonoBehaviour
     public void GameOver(){
         if (score > highscore) highscore = score;
         highText.text = ("HI-SCORE\n   " + highscore.ToString("D4"));
+
+        enemyManager.Clear();
+        var items = GameObject.FindGameObjectsWithTag("Barricade");
+        foreach (var item in items){
+            Destroy(item);
+        }
+
+        
 
 
     }

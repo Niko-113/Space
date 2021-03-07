@@ -48,6 +48,15 @@ public class EnemyManager : MonoBehaviour
 
     }
 
+    public void Clear(){
+        foreach (var enemy in enemies){
+            Destroy(enemy.gameObject);
+        }
+
+        enemies.Clear();
+        transform.position = new Vector3(-5, 6, 0);
+    }
+
     IEnumerator TryFire(){
         while(enemies.Count > 0){
             int index = Random.Range(0, enemies.Count - 1);
@@ -84,8 +93,8 @@ public class EnemyManager : MonoBehaviour
         speed += 0.1f;
         
         if (enemies.Count == 0){
-            //GameManager.master.GameOver();
-            // Restart stuff but don't end game
+            Clear();
+            Instantiate();
         }
     }
 }
