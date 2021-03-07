@@ -17,11 +17,14 @@ public class Enemy : MonoBehaviour
       if (hp <= 0) EnemyManager.manager.RemoveEnemy(this);
     }
 
-
     bool CheckBelow(){
-      // raycast
+      RaycastHit2D hit = Physics2D.Raycast(shottingOffset.position, Vector2.down);
+      
+      if (hit){
+        if (hit.collider.gameObject.tag.Equals("Enemy")) return true;
+      }
 
-      return true;
+      return false;
     }
 
     // Called by Manager
@@ -29,7 +32,12 @@ public class Enemy : MonoBehaviour
       transform.position += new Vector3(x, y, 0) * speed * Time.deltaTime;
     }
 
-    void Fire(){
+    public void Fire(){
+      if (CheckBelow()){
+        Debug.Log("Stop!");
+        return;
+      } 
+
       GameObject shot = Instantiate(bullet, shottingOffset.position, Quaternion.identity);
       shot.GetComponent<Bullet>().speed *= -1;
       Destroy(shot, 3f);

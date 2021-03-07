@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public Text highText;
     private int score = 0;
+    private int highscore = 0;
     private int lives = 3;
 
 
@@ -38,12 +39,15 @@ public class GameManager : MonoBehaviour
 
     public void PlayerHit(){
         lives--;
-        if (lives == 0) EndGame();
+        if (lives == 0) GameOver();
         else InstantiatePlayer();
 
     }
 
-    private void EndGame(){
+    public void GameOver(){
+        if (score > highscore) highscore = score;
+        highText.text = ("HI-SCORE\n   " + highscore.ToString("D4"));
+
 
     }
 

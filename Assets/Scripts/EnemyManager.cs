@@ -24,15 +24,43 @@ public class EnemyManager : MonoBehaviour
     public void Instantiate(){
         for (int i = 0; i < 3; i++){
             for (int j = 0; j < 5; j++){
-                SpawnEnemy(i, new Vector3(j * 1.3f, -i * 1.3f, 0));
+                SpawnEnemy(i, new Vector3(j * 1.5f, -i * 1.5f, 0));
             }
         }
+        StartCoroutine("TryFire");
     }
 
     void FixedUpdate(){
         foreach (var enemy in enemies){
+            
             enemy.Move(x, y, speed);
+            if (enemy.transform.position.x > 10){
+                x = -1;
+                SwitchDirection();
+            }
+            if (enemy.transform.position.x < -10){
+                x = 1;
+                SwitchDirection();
+            }
         }
+
+        
+
+    }
+
+    IEnumerator TryFire(){
+        while(enemies.Count > 0){
+            int index = Random.Range(0, enemies.Count - 1);
+            enemies[index].Fire();
+
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+
+
+    void SwitchDirection(){
+        transform.position += new Vector3(0, -1, 0);
     }
 
     void SpawnEnemy(int type, Vector3 positionToSpawn){
@@ -54,5 +82,10 @@ public class EnemyManager : MonoBehaviour
         GameManager.master.AddPoints(enemy.points);
         Destroy(enemy.gameObject);
         speed += 0.1f;
+        
+        if (enemies.Count == 0){
+            //GameManager.master.GameOver();
+            // Restart stuff but don't end game
+        }
     }
 }
