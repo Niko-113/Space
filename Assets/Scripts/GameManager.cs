@@ -8,26 +8,50 @@ public class GameManager : MonoBehaviour
 
     public static GameManager master;
     public EnemyManager enemyManager;
+
     public GameObject player;
     public GameObject barricade;
+
     public Text scoreText;
     public Text highText;
+    public Text scoreTable;
+    public Text lifeText;
+
     private int score = 0;
     private int highscore = 0;
     private int lives = 3;
+
+    private bool hasStarted = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
         master = this;
-        GameStart();
+    }
+
+    void Update(){
+        if(Input.GetKeyDown(KeyCode.LeftShift) && !hasStarted) GameStart();
     }
 
     void GameStart(){
+        hasStarted = true;
+        scoreTable.gameObject.SetActive(false);
+
         InstantiatePlayer();
         InstantiateBarricade();
+
         enemyManager.Instantiate();
+        StartCoroutine("SpawnUFO");
+
+        lives = 3;
+        score = 0;
+        lifeText.text = "LIVES: " + lives;
+        scoreText.text = ("SCORE\n  " + score.ToString("D4"));
+
+        
+
+
     }
 
 
@@ -38,6 +62,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerHit(){
         lives--;
+        lifeText.text = "LIVES: " + lives;
         if (lives == 0) GameOver();
         else InstantiatePlayer();
 
@@ -54,19 +79,29 @@ public class GameManager : MonoBehaviour
         }
 
         
-
+        StopCoroutine("SpawnUFO");
+        scoreTable.gameObject.SetActive(true);
+        hasStarted = false;
 
     }
 
     private void InstantiatePlayer(){
-        player = GameObject.Instantiate(player, transform);
-        player.transform.localPosition = new Vector3(10, -1, 0);
+        GameObject newPlayer = GameObject.Instantiate(player, transform);
+        newPlayer.transform.localPosition = new Vector3(10, -1, 0);
     }
 
     private void InstantiateBarricade(){
         for (int i = 0; i < 4; i++){
-            barricade = GameObject.Instantiate(barricade, transform);
-            barricade.transform.localPosition = new Vector3(i * 5, 3, 0);
+            GameObject newBarricade = GameObject.Instantiate(barricade, transform);
+            newBarricade.transform.localPosition = new Vector3(i * 5, 3, 0);
+        }
+    }
+
+    IEnumerator SpawnUFO(){
+        while(true){
+            //enemyManager.SpawnEnemy(3, new Vector3(-10, 8, 0));
+            enemyManager.SpawnUFO();
+            yield return new WaitForSeconds(30f);
         }
     }
 }

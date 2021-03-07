@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
 
     // Called by Manager
     public void Move(int x, int y, float speed){
+      if (this.gameObject.name.Equals("EnemyRare")) x = 1;
       transform.position += new Vector3(x, y, 0) * speed * Time.deltaTime;
     }
 

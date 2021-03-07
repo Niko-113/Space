@@ -7,6 +7,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject enemy1;
     public GameObject enemy2;
     public GameObject enemy3;
+    public GameObject enemyR;
     private List<Enemy> enemies = new List<Enemy>();
     public float speed = 1;
     private int x = 1;
@@ -55,6 +56,7 @@ public class EnemyManager : MonoBehaviour
 
         enemies.Clear();
         transform.position = new Vector3(-5, 6, 0);
+        StopCoroutine("TryFire");
     }
 
     IEnumerator TryFire(){
@@ -72,7 +74,7 @@ public class EnemyManager : MonoBehaviour
         transform.position += new Vector3(0, -1, 0);
     }
 
-    void SpawnEnemy(int type, Vector3 positionToSpawn){
+    public void SpawnEnemy(int type, Vector3 positionToSpawn){
         GameObject toSpawn;
         switch (type){
             case 0: toSpawn = enemy3; break;
@@ -86,8 +88,16 @@ public class EnemyManager : MonoBehaviour
         enemies.Add(toSpawn.GetComponent<Enemy>());
     }
 
+    public void SpawnUFO(){
+        GameObject ufo = GameObject.Instantiate(enemyR, transform);
+        ufo.transform.position = new Vector3(-10, 8, 0);
+        ufo.GetComponent<Rigidbody2D>().velocity = new Vector3(2, 0, 0);
+        Destroy(ufo, 20f);
+    }
+
     public void RemoveEnemy(Enemy enemy){
-        enemies.Remove(enemy);
+        if (enemies.Contains(enemy)) enemies.Remove(enemy);
+
         GameManager.master.AddPoints(enemy.points);
         Destroy(enemy.gameObject);
         speed += 0.1f;
