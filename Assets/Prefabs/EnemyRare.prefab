@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4988884264498715822}
   - component: {fileID: -7227856942867773677}
   - component: {fileID: 6653574390840972197}
+  - component: {fileID: -8209616101487604739}
   m_Layer: 0
   m_Name: EnemyRare
   m_TagString: Enemy
@@ -148,3 +149,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &-8209616101487604739
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483517710255911465}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 81ef8b93a092342b18c0d9a229d7c3cc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
