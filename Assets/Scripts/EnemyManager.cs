@@ -99,7 +99,7 @@ public class EnemyManager : MonoBehaviour
         if (enemies.Contains(enemy)) enemies.Remove(enemy);
 
         GameManager.master.AddPoints(enemy.points);
-        Destroy(enemy.gameObject);
+        Destroy(enemy.gameObject, 0.8f);
         speed += 0.1f;
         
         if (enemies.Count == 0){

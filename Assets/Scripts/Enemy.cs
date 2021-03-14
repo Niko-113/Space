@@ -8,13 +8,22 @@ public class Enemy : MonoBehaviour
   public GameObject bullet;
   public Transform shottingOffset;
 
+  public Animator animator;
+
   public int points = 10;
   public int hp = 1;
+
+    void Start(){
+      animator = this.gameObject.GetComponent<Animator>();
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
       hp--;
-      if (hp <= 0) EnemyManager.manager.RemoveEnemy(this);
+      if (hp == 0){
+        animator.SetTrigger("Die");
+        EnemyManager.manager.RemoveEnemy(this);
+      } 
     }
 
     bool CheckBelow(){
@@ -34,12 +43,13 @@ public class Enemy : MonoBehaviour
     }
 
     public void Fire(){
-      if (CheckBelow()){
+      if (CheckBelow() || !this.gameObject.name.Equals("Enemy 3")){
         return;
       } 
 
       GameObject shot = Instantiate(bullet, shottingOffset.position, Quaternion.identity);
       shot.GetComponent<Bullet>().speed *= -1;
+      animator.SetTrigger("Shoot");
       Destroy(shot, 3f);
     }
 }
