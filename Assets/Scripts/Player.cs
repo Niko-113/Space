@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
 
       float horizontal = Input.GetAxis("Horizontal");
       transform.position += new Vector3(horizontal, 0, 0) * speed * Time.deltaTime;
-
     }
 
     public void Goodbye(){
@@ -40,6 +39,5 @@ public class Player : MonoBehaviour
       animator.SetTrigger("Die");
       GameManager.master.PlayerHit();
       Destroy(this.gameObject, 0.7f);
-
     }
 }

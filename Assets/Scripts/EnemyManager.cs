@@ -18,7 +18,6 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        //Instantiate();
         manager = this;
     }
 
@@ -67,8 +66,6 @@ public class EnemyManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
     }
-
-
 
     void SwitchDirection(){
         transform.position += new Vector3(0, -1, 0);

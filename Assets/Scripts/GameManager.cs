@@ -50,30 +50,13 @@ public class GameManager : MonoBehaviour
     void GameStart(){
         hasStarted = true;
         SceneManager.LoadScene("DemoScene");
-
-        
-
-
-        
-
-        
-
-        
-
-
-        
-
-
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
         if (this == null) return;
-        Debug.Log("Entering: " + scene.name);
-        Debug.Log(score);
 
         if (scene.name.Equals("DemoScene")){
             
-
             enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
 
             lifeText = GameObject.Find("LifeCount").GetComponent<Text>();
@@ -87,7 +70,6 @@ public class GameManager : MonoBehaviour
             scoreText.text = ("SCORE\n  " + score.ToString("D4"));
             highText.text = ("HI-SCORE\n   " + highscore.ToString("D4"));
 
-            
             InstantiatePlayer();
             InstantiateBarricade();
 
@@ -129,7 +111,6 @@ public class GameManager : MonoBehaviour
 
         
         StopCoroutine("SpawnUFO");
-
 
         if (newPlayer != null) Destroy(newPlayer);
 
