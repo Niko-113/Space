@@ -16,10 +16,11 @@ public class EnemyManager : MonoBehaviour
     public static EnemyManager manager;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //Instantiate();
         manager = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void Instantiate(){
@@ -103,8 +104,7 @@ public class EnemyManager : MonoBehaviour
         speed += 0.1f;
         
         if (enemies.Count == 0){
-            Clear();
-            Instantiate();
+            GameManager.master.GameOver();
         }
     }
 }

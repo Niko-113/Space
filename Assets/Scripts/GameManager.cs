@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
     }
 
     void GameStart(){
+        SceneManager.LoadScene("DemoScene");
+
         hasStarted = true;
         scoreTable.gameObject.SetActive(false);
 
@@ -81,9 +83,13 @@ public class GameManager : MonoBehaviour
         
         StopCoroutine("SpawnUFO");
         scoreTable.gameObject.SetActive(true);
-        hasStarted = false;
+        
 
         DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(scoreText);
+        DontDestroyOnLoad(highText);
+        DontDestroyOnLoad(enemyManager);
+
         SceneManager.LoadScene("CreditScene");
 
         StartCoroutine("EndCredits");
@@ -122,5 +128,6 @@ public class GameManager : MonoBehaviour
 
         if (score > highscore) highscore = score;
         highText.text = ("HI-SCORE\n   " + highscore.ToString("D4"));
+        hasStarted = false;
     }
 }
