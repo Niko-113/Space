@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 
   public int speed = 1;
 
-    void Start(){
+    void Awake(){
       animator = this.gameObject.GetComponent<Animator>();
     }
 
@@ -29,6 +29,10 @@ public class Player : MonoBehaviour
       float horizontal = Input.GetAxis("Horizontal");
       transform.position += new Vector3(horizontal, 0, 0) * speed * Time.deltaTime;
 
+    }
+
+    public void Goodbye(){
+      Destroy(this.gameObject);
     }
 
     void OnCollisionEnter2D (Collision2D collision){

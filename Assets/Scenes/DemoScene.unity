@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &60407368
 RectTransform:
   m_ObjectHideFlags: 0
@@ -872,7 +872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &747152668
 Transform:
   m_ObjectHideFlags: 0
@@ -904,7 +904,6 @@ MonoBehaviour:
   barricade: {fileID: 1225671928161837062, guid: 359b59ebc5831a2428d9d2f11c177d76, type: 3}
   scoreText: {fileID: 884319258}
   highText: {fileID: 764140678}
-  scoreTable: {fileID: 60407369}
   lifeText: {fileID: 73147823}
 --- !u!1 &764140676
 GameObject:

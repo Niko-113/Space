@@ -20,7 +20,6 @@ public class EnemyManager : MonoBehaviour
     {
         //Instantiate();
         manager = this;
-        DontDestroyOnLoad(this.gameObject);
     }
 
     public void Instantiate(){

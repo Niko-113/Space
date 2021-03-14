@@ -13,9 +13,10 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject barricade;
 
+    private GameObject newPlayer;
+
     public Text scoreText;
     public Text highText;
-    public Text scoreTable;
     public Text lifeText;
 
     private int score = 0;
@@ -26,9 +27,20 @@ public class GameManager : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        master = this;
+        
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        if (master == null){
+            DontDestroyOnLoad(this.gameObject); 
+            master = this;
+        } else{
+            Destroy(this.gameObject);
+        }
+        
+        
     }
 
     void Update(){
@@ -36,26 +48,47 @@ public class GameManager : MonoBehaviour
     }
 
     void GameStart(){
+        hasStarted = true;
         SceneManager.LoadScene("DemoScene");
 
-        hasStarted = true;
-        scoreTable.gameObject.SetActive(false);
+        
 
-        InstantiatePlayer();
-        InstantiateBarricade();
 
-        enemyManager.Instantiate();
-        StartCoroutine("SpawnUFO");
+        
 
-        lives = 3;
-        score = 0;
-        lifeText.text = "LIVES: " + lives;
-        scoreText.text = ("SCORE\n  " + score.ToString("D4"));
+        
+
+        
+
 
         
 
 
     }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode){
+        if (scene.name.Equals("DemoScene")){
+            Debug.Log("help?");
+
+            enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
+
+            lifeText = GameObject.Find("LifeCount").GetComponent<Text>();
+            scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+            highText = GameObject.Find("HighScoreText").GetComponent<Text>();
+
+            lives = 3;
+            score = 0;
+            lifeText.text = "LIVES: " + lives;
+            scoreText.text = ("SCORE\n  " + score.ToString("D4"));
+
+            InstantiatePlayer();
+            InstantiateBarricade();
+
+            enemyManager.Instantiate();
+            StartCoroutine("SpawnUFO");
+        }
+    }
+
 
 
     public void AddPoints(int points){
@@ -72,7 +105,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameOver(){
-        
+        lives = 3;
 
         enemyManager.Clear();
         var items = GameObject.FindGameObjectsWithTag("Barricade");
@@ -82,13 +115,9 @@ public class GameManager : MonoBehaviour
 
         
         StopCoroutine("SpawnUFO");
-        scoreTable.gameObject.SetActive(true);
-        
 
-        DontDestroyOnLoad(this.gameObject);
-        DontDestroyOnLoad(scoreText);
-        DontDestroyOnLoad(highText);
-        DontDestroyOnLoad(enemyManager);
+
+        if (newPlayer != null) Destroy(newPlayer);
 
         SceneManager.LoadScene("CreditScene");
 
@@ -103,7 +132,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void InstantiatePlayer(){
-        GameObject newPlayer = GameObject.Instantiate(player, transform);
+        newPlayer = GameObject.Instantiate(player, transform);
         newPlayer.transform.localPosition = new Vector3(10, -1, 0);
     }
 
@@ -126,8 +155,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene("MenuScene");
 
-        if (score > highscore) highscore = score;
-        highText.text = ("HI-SCORE\n   " + highscore.ToString("D4"));
+        // if (score > highscore) highscore = score;
+        // highText.text = ("HI-SCORE\n   " + highscore.ToString("D4"));
         hasStarted = false;
     }
 }
