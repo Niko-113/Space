@@ -106,6 +106,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 2457785739244962049, guid: d4511b14daaa37c468a74ed386b2583f, type: 3}
   shottingOffset: {fileID: 3116137262774567669}
+  explode: {fileID: 8300000, guid: 3d0cb4158f282555f8d20d9f2b6726c5, type: 3}
+  fire: {fileID: 0}
+  animator: {fileID: 0}
   points: 10
   hp: 1
 --- !u!50 &-7227856942867773677

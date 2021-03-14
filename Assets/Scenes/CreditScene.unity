@@ -193,8 +193,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\tGAME OVER!\n\n\nSprites - Niko\nProgramming - Niko\nSounds - Niko\n???
-    - [REDACTED] \n\n\n|\uFFE3\uFFE3\uFFE3\uFFE3\uFFE3\uFFE3 |\n|                     
+  m_Text: "\tGAME OVER!\n\n\nSprites - Niko\nProgramming - Niko\nSounds - Niko (Made
+    with JFXR)\n??? - [REDACTED] \n\n\n|\uFFE3\uFFE3\uFFE3\uFFE3\uFFE3\uFFE3 |\n|                     
     |\n|  GOODBYE  | \n|                      |\n| \uFF3F\uFF3F\uFF3F\uFF3F\uFF3F__|
     \n(\\__/) || \n(\u2022\u3145\u2022) || \n/ \u3000 \u3065\n\n\n\n\n"
 --- !u!222 &170443661

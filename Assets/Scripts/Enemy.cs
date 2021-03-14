@@ -8,6 +8,10 @@ public class Enemy : MonoBehaviour
   public GameObject bullet;
   public Transform shottingOffset;
 
+  public AudioClip explode;
+  public AudioClip fire;
+
+
   public Animator animator;
 
   public int points = 10;
@@ -24,6 +28,7 @@ public class Enemy : MonoBehaviour
       if (hp == 0){
         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         animator.SetTrigger("Die");
+        SoundManager.speaker.PlaySound(explode);
         EnemyManager.manager.RemoveEnemy(this);
       } 
     }
@@ -52,6 +57,7 @@ public class Enemy : MonoBehaviour
       GameObject shot = Instantiate(bullet, shottingOffset.position, Quaternion.identity);
       shot.GetComponent<Bullet>().speed *= -1;
       animator.SetTrigger("Shoot");
+      SoundManager.speaker.PlaySound(fire);
       Destroy(shot, 3f);
     }
 }

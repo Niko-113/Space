@@ -3,7 +3,12 @@ guid: 796aad014e2107342a60ed88af81c745
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bullet: {instanceID: 0}
+  - shottingOffset: {instanceID: 0}
+  - explode: {instanceID: 0}
+  - fire: {instanceID: 0}
+  - animator: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

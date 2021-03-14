@@ -76,6 +76,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 2457785739244962049, guid: d4511b14daaa37c468a74ed386b2583f, type: 3}
   shottingOffset: {fileID: 8125335893176967482}
+  animator: {fileID: 0}
+  fire: {fileID: 8300000, guid: d32cec7413a3a9e8b9d3c507dcf39178, type: 3}
+  explode: {fileID: 8300000, guid: 7710fc5f89da1f44796988ab3a6a78ac, type: 3}
   speed: 5
 --- !u!50 &3785887790771851545
 Rigidbody2D:

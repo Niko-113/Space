@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
   public Transform shottingOffset;
 
   public Animator animator;
+  public AudioClip fire;
+  public AudioClip explode;
 
   public int speed = 1;
 
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
     {
       if (Input.GetKeyDown(KeyCode.Space))
       {
+        SoundManager.speaker.PlaySound(fire);
         GameObject shot = Instantiate(bullet, shottingOffset.position, Quaternion.identity);
         Destroy(shot, 3f);
         animator.SetTrigger("Shoot");
@@ -35,6 +38,7 @@ public class Player : MonoBehaviour
     }
 
     void OnCollisionEnter2D (Collision2D collision){
+      SoundManager.speaker.PlaySound(explode);
       this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
       animator.SetTrigger("Die");
       GameManager.master.PlayerHit();
