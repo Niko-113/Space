@@ -13,14 +13,16 @@ public class Enemy : MonoBehaviour
   public int points = 10;
   public int hp = 1;
 
-    void Start(){
+    void Awake(){
       animator = this.gameObject.GetComponent<Animator>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-      hp--;
+      if (collision.gameObject.tag.Equals("Bullet")) hp--;
+
       if (hp == 0){
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         animator.SetTrigger("Die");
         EnemyManager.manager.RemoveEnemy(this);
       } 
@@ -43,7 +45,7 @@ public class Enemy : MonoBehaviour
     }
 
     public void Fire(){
-      if (CheckBelow() || !this.gameObject.name.Equals("Enemy 3")){
+      if (CheckBelow() || !this.gameObject.tag.Equals("CanFire")){
         return;
       } 
 

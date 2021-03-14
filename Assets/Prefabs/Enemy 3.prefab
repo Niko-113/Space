@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 6467056504973733977}
   m_Layer: 0
   m_Name: Enemy 3
-  m_TagString: Enemy
+  m_TagString: CanFire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 2457785739244962049, guid: d4511b14daaa37c468a74ed386b2583f, type: 3}
   shottingOffset: {fileID: 3116137262774567669}
+  animator: {fileID: 0}
   points: 30
   hp: 1
 --- !u!50 &-7227856942867773677
