@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -69,8 +70,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameOver(){
-        if (score > highscore) highscore = score;
-        highText.text = ("HI-SCORE\n   " + highscore.ToString("D4"));
+        
 
         enemyManager.Clear();
         var items = GameObject.FindGameObjectsWithTag("Barricade");
@@ -82,6 +82,17 @@ public class GameManager : MonoBehaviour
         StopCoroutine("SpawnUFO");
         scoreTable.gameObject.SetActive(true);
         hasStarted = false;
+
+        DontDestroyOnLoad(this.gameObject);
+        SceneManager.LoadScene("CreditScene");
+
+        StartCoroutine("EndCredits");
+
+        
+
+
+
+        
 
     }
 
@@ -103,5 +114,13 @@ public class GameManager : MonoBehaviour
             enemyManager.SpawnUFO();
             yield return new WaitForSeconds(30f);
         }
+    }
+
+    IEnumerator EndCredits(){
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("MenuScene");
+
+        if (score > highscore) highscore = score;
+        highText.text = ("HI-SCORE\n   " + highscore.ToString("D4"));
     }
 }
