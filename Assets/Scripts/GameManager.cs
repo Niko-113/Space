@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public Text lifeText;
 
     private int score = 0;
-    private int highscore = 0;
+    private static int highscore = 0;
     private int lives = 3;
 
     private bool hasStarted = false;
@@ -67,8 +67,12 @@ public class GameManager : MonoBehaviour
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
+        if (this == null) return;
+        Debug.Log("Entering: " + scene.name);
+        Debug.Log(score);
+
         if (scene.name.Equals("DemoScene")){
-            Debug.Log("help?");
+            
 
             enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
 
@@ -78,14 +82,24 @@ public class GameManager : MonoBehaviour
 
             lives = 3;
             score = 0;
+
             lifeText.text = "LIVES: " + lives;
             scoreText.text = ("SCORE\n  " + score.ToString("D4"));
+            highText.text = ("HI-SCORE\n   " + highscore.ToString("D4"));
 
+            
             InstantiatePlayer();
             InstantiateBarricade();
 
             enemyManager.Instantiate();
             StartCoroutine("SpawnUFO");
+        }
+
+        if (scene.name.Equals("MenuScene")){
+            highText = GameObject.Find("HighScoreText").GetComponent<Text>();
+
+            if (score > highscore) highscore = score;
+            highText.text = ("HI-SCORE\n   " + highscore.ToString("D4"));
         }
     }
 
@@ -155,8 +169,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene("MenuScene");
 
-        // if (score > highscore) highscore = score;
-        // highText.text = ("HI-SCORE\n   " + highscore.ToString("D4"));
+        
         hasStarted = false;
     }
 }
